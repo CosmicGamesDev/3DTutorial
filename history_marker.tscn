@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpqdlgeccsq7q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rt4ci"]
+albedo_color = Color(0.46899, 0.210308, 0.733716, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_6tjgh"]
+material = SubResource("StandardMaterial3D_rt4ci")
+
+[node name="HistoryMarker" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh_6tjgh")

@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfl0hl2kv0r8b"]
+
+[ext_resource type="PackedScene" uid="uid://c1jknmgx40pek" path="res://mage.tscn" id="1_1x0bv"]
+[ext_resource type="PackedScene" uid="uid://pkab67xi6lcd" path="res://enemy.tscn" id="2_n6hue"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_b0b6f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_44b42"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="Environment" id="Environment_cvvds"]
+ambient_light_color = Color(0.611765, 0.980392, 0.976471, 1)
+
+[node name="World" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+mesh = SubResource("BoxMesh_b0b6f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_44b42")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cvvds")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.628506, 0.777805, 0, -0.777805, 0.628506, 0, 14.8874, 14.7719)
+light_color = Color(0.886275, 1, 1, 1)
+
+[node name="Mage" parent="." instance=ExtResource("1_1x0bv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.816635, 0)
+
+[node name="Enemy" parent="." instance=ExtResource("2_n6hue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.922, 1.0131, 0)
+
+[node name="Enemy2" parent="." instance=ExtResource("2_n6hue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.5757, 0.937516, 0)

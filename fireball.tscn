@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://4uf817ld7drd"]
+
+[ext_resource type="Script" path="res://fireball.gd" id="1_hmwvi"]
+[ext_resource type="Script" path="res://HitBox.gd" id="2_m7wwy"]
+
+[sub_resource type="Gradient" id="Gradient_2sxql"]
+offsets = PackedFloat32Array(0, 0.888889)
+colors = PackedColorArray(0.770731, 0.209513, 0, 1, 1, 0.4, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w48eo"]
+gradient = SubResource("Gradient_2sxql")
+fill = 1
+fill_from = Vector2(0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgyn4"]
+albedo_texture = SubResource("GradientTexture2D_w48eo")
+
+[sub_resource type="SphereMesh" id="SphereMesh_tm0f8"]
+material = SubResource("StandardMaterial3D_lgyn4")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6vj3j"]
+
+[node name="Fireball" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh_tm0f8")
+script = ExtResource("1_hmwvi")
+
+[node name="HitBox" type="Area3D" parent="."]
+script = ExtResource("2_m7wwy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+shape = SubResource("SphereShape3D_6vj3j")
+
+[node name="LifeSpan" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="LifeSpan" to="." method="_on_life_span_timeout"]
